@@ -1,0 +1,23 @@
+<style>
+.modal-content {
+	border-radius: 15px;
+	background: #00BBFF;
+}
+
+.modal-backdrop {
+	background-color: #000000;
+}
+
+.modal-backdrop.show {
+	opacity: .5;
+}
+
+.modal-content {
+	text-align: center;
+	font-weight: bold;
+}
+
+.modal-header {
+	align-items: center;
+}
+</style>

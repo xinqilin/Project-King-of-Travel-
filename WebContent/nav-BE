@@ -1,0 +1,76 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <!--nav請放在body第一行-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="<%=request.getContextPath()%>/index_BE.jsp">遊記王《後台》</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">          
+          
+      <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/back-end/mem/select_page.jsp" tabindex="-1" >會員管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/back-end/spot/select_page.jsp" tabindex="-1" >景點管理</a>
+      </li>
+                  <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/back-end/trip/b_trip_index.jsp" tabindex="-1" >行程管理</a>
+      </li>
+
+
+                      <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             商城
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="<%=request.getContextPath() %>/back-end/store/item_select_page.jsp">商品管理</a>
+              <a class="dropdown-item" href="<%=request.getContextPath() %>/back-end/store/storeOrd_select_page.jsp">訂單管理</a>
+            </div>
+          </li>
+
+
+
+      
+
+                        <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/back-end/pointgoods/selectPage.jsp" tabindex="-1" >積分商品管理</a>
+      </li>
+
+
+                        <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/back-end/activity/activityB.jsp" tabindex="-1" >競猜直播</a>
+      </li>
+
+
+
+
+
+          
+
+
+
+
+
+
+
+            
+            
+
+
+
+
+
+          </li>
+        <c:if test="${backaccount==null}"><li class="nav-item" ><a  class="nav-link"  href="<%=request.getContextPath()%>/login.jsp">登入</a></li></c:if>
+		<c:if test="${backaccount!=null}"><li class="nav-item"><a class="nav-link" href="#" style="text-decoration:underline; color:white;">
+			你好! ${backaccount}</a></li>
+			<a class="nav-link" href="<%=request.getContextPath()%>/Logouthandler.do">登出</a>
+			
+			
+			<br><br></c:if>
+        </ul>
+      </div>
+    </nav>
+     
+    <!-- nav -->

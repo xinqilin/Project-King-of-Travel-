@@ -1,0 +1,174 @@
+﻿--------------------------------------------------------
+--  刪除表格
+--------------------------------------------------------
+Alter session set deferred_segment_creation=false;
+
+DROP TABLE PGOrdDetails;
+DROP TABLE PointGoodsOrd;
+DROP TABLE PointGoods;
+DROP TABLE PartList;
+DROP TABLE Activity;
+DROP TABLE ReportWishOrder;
+DROP TABLE WishDetails;
+DROP TABLE WishOrd;
+DROP TABLE WishItem;
+DROP TABLE storeOrdDetails;
+DROP TABLE storeOrd;
+DROP TABLE items;
+DROP TABLE ReportArticle;
+DROP TABLE ArticleDetails;
+DROP TABLE Article;
+DROP TABLE ReportTrip;
+DROP TABLE TripDetails;
+DROP TABLE TripList;
+DROP TABLE SpotList;
+DROP TABLE City;
+DROP TABLE Country;
+DROP TABLE MemberList;
+
+DROP TABLE AUTHORITY;
+DROP TABLE ADMINISTRATOR;
+DROP TABLE FUNCLIST;
+
+
+DROP SEQUENCE funclist_seq;
+DROP SEQUENCE administrator_seq;
+DROP SEQUENCE PointGoodsOrdNo_SEQ;
+DROP SEQUENCE PointGoodsNo_SEQ;
+DROP SEQUENCE ActivityNo_SEQ;
+DROP SEQUENCE WishOrd_seq;
+DROP SEQUENCE itemNo_seq;
+DROP SEQUENCE storeOrd_seq;
+DROP SEQUENCE MemberList_seq;
+DROP SEQUENCE Country_seq;
+DROP SEQUENCE City_seq;
+DROP SEQUENCE SpotList_seq;
+DROP SEQUENCE TripList_SEQ;
+DROP SEQUENCE Article_seq;
+DROP SEQUENCE WishItem_seq;
+DROP SEQUENCE authority_seq;
+
+--------------------------------------------------------
+--  建立會員
+--------------------------------------------------------
+
+CREATE TABLE MemberList(	
+  MemNo      VARCHAR2(7)   NOT NULL PRIMARY KEY, 
+  MemName    VARCHAR2(12)  NOT NULL, 
+  E_mail     VARCHAR2(30)  NOT NULL UNIQUE, 
+  MemPasswd  VARCHAR2(20)  NOT NULL, 
+  MemPhoto   BLOB,
+  NickName   VARCHAR2(12) , 
+  IdNo       VARCHAR2(10) NOT NULL UNIQUE, 
+  BirDay     DATE  NOT NULL,  
+  Address    VARCHAR2(100), 
+  Phone      VARCHAR2(15), 
+  DateOfAccountEshablished    DATE  DEFAULT SYSDATE, 
+  Status         NUMBER(1,0)  DEFAULT '0',
+  Introduction   VARCHAR2(4000), 
+  Points     NUMBER(7,0)  DEFAULT '0',
+  MaxPoints  NUMBER(4,0)  DEFAULT '0');
+
+CREATE SEQUENCE MemberList_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
+
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status,Introduction,points,maxpoints) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'梁睿軒','Curry@gmail.com','123456790',null,'Curry','A223456790',TO_DATE('1992-02-24','YYYY-MM-DD'),'桃園市平鎮區民族路二段175號','0987-087587','1','個人簡介:看似文雅實乃悶騷，愛落成語及冷笑話，常自言自語自問自答，若話匣子一開，口若懸河，常講到自己涕淚縱橫或是義憤填膺！手綁起來便不知如何說話。標準處女座，行囊中必備橡皮筋、迴紋針、分類整理袋、置物盒！缺一不可！帶團必備多幅地圖，是個地圖蒐集狂。最喜愛的事物：柏楊「資治通鑑」，羅貫中「三國演義」，塩野七生「羅馬人的故事」，張雨生「口是心非」，巴哈「無伴奏大提琴組曲」。海地區、東非、南亞、中北歐、南美洲等四十二國；戮力實行「我行故我在」，除了帶團出國，每年一個月的自助旅行，藉以考察、充電、休息，找到生活上的平衡，以及對於工作的興趣與服務的熱情。','300','100');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status,Introduction,points,maxpoints) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'吳永志','Thompthon@gmail.com','123456792',null,'Thompthon','A223456792',TO_DATE('1995-02-19','YYYY-MM-DD'),'新竹縣竹東鎮長春路3段130號','0912-345678','1','很高興能在這個地方容許我, 耽誤大家5分鐘的時間做精闢自我介紹, 家裡成員共有五人, 上面還有位在澳洲定居也是從事休閒業的大哥. 而我也參加過救國團谷關野營隊,及合歡山雪地訓練自強活動, 與聖馬爾定醫院急診室志工. 在這些不同的體驗中不僅也讓得到不同層次寶貴經驗, 到社會的第一份工作任職於國立中正大學地震研究所, 負責強地震觀測, 也經歷台灣921大地震並且讓我感受到大自然的雄偉不可輕視及人類的脆弱, 我也曾任職於國泰人壽保險主任一職, 也是為了保障所有愛過我的親朋好友所做的努力一份工, 這總使命感驅使著我繼續向前堅守著崗位努力不邂, 更讓我學習到人際溝通的技巧。 三年半前我曾秉持著服務的熱誠, 到阿里山賓館客服部最基層工作行李員porter做起, 歷經司機,接待員,房務員, 最後是櫃台接待組長, 這總總更讓我學習如何了解每一個客人習性及個人需求, 處裡一些突發狀況進而妥善的服務每個客人, 更讓每個客人有賓至如歸感受, 讓每個來到阿里山賓館的客人深刻體驗到不同凡響永生難忘的體驗, 讓每個來過的旅客不只是旅客還有像家的感覺回味無窮, 由於本身愛好大自然與旅遊更在閒暇休假日投入山水林間與綠地為伍, 花鳥叢林好不快活拍拍照希望與有志一同的朋友把我的快樂心情分享給你們的. 要的話請跟我一起來吧, 熱誠的歡迎你的加入翔哥的行列. 我在阿里山賓館每個人都稱我為翔哥.','900','0');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status,Introduction,points,maxpoints) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'游凱宇','Durant@gmail.com','123456794',null,'Durant','A223456794',TO_DATE('1991-02-25','YYYY-MM-DD'),'臺北市大安區新生南路三段96-1號','0978-078578','1','大家好，我是 MisJ 游凱宇。由於每週都有許多新加入的朋友，所以2019新年想說來個認真的 #自我介紹 😎😘在旅遊界打滾多年，累積了不少頭銜：旅遊達人、旅遊界網紅（哈哈哈）、旅行社總經理等等...但是，我最喜歡、也最相信的還是一個 #簡單、#有溫度 的旅遊。','2000','200');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status,Introduction,points,maxpoints) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'林信錡','Nowitzki@gmail.com','123456796',null,'Nowitzki','I223456796',TO_DATE('1994-12-09','YYYY-MM-DD'),'臺南市中西區中華西路二段38號','0922-456777','0','我是Xin，獨自管理、創作粉絲頁及部落格 (偽日本人Xin  ・食遊玩樂)。為了記錄自己的旅行生活、攝影創作而開始撰寫部落格。用文字、用影像，忠實地記錄眼見所及的一景一物，傳遞在旅行中、生活裡的一切美好。所謂旅行，是為了相遇、為了邂逅、為了思念一生只能夠有一面之緣的陌生人，為了感受所謂一期一會的悸動。所有的文章都只是因為想分享旅遊記事而書寫，不為了迎合大眾而撰寫別人想看的主題從2014年2月開始創作至今，一直維持如此的初衷。超過五十次的日本旅行，已到訪日本四十多個縣市，希望有朝一日能全日本制霸我的旅行，不侷限於任何地域，只希望能踏遍每一處想要探索的所在，用雙眼收集每一刻變化的景致希望能發現不一樣的視角，探尋各地祕境，分享給和我一樣熱愛旅行的人們或許我無法成為誰的故事，但希望這些章節能帶給人們不一樣的觸動','1000','100');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'涂育銘','Jerermy@gmail.com','123456797',null,'Jerermy','A123456797',TO_DATE('1991-08-23','YYYY-MM-DD'),'高雄市前鎮區中華五路1111號','0966-345678','2');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'劉學義','Duncan@gmail.com','123456800',null,'Duncan','A223456800',TO_DATE('1990-12-23','YYYY-MM-DD'),'臺中市大里區中興路二段478號','0909-123321','1');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'吳冠宏','Kawhi@gmail.com','123456803',null,'Kawhi','A123456803',TO_DATE('1995-08-01','YYYY-MM-DD'),'嘉義市忠孝路489號','0989-654321','0');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'鄭仲凱','Allen@gmail.com','123456808',null,'Allen','A223456808',TO_DATE('1995-04-15','YYYY-MM-DD'),'臺東市新生路158號','0921-556656','1');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'陳新','Rose@gmail.com','123456779',null,'Rose','F122456789',TO_DATE('1990-10-11','YYYY-MM-DD'),'屏東市自由路496號','0976-546996','2');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'陳致緯','Kobe@gmail.com','123456876',null,'Kobe','H233478901',TO_DATE('1990-04-16','YYYY-MM-DD'),'雲林縣斗六市民生南路169號','0933-540520','1');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'賴玟翰','Harden@gmail.com','1234576824',null,'Harden','K222567899',TO_DATE('1991-09-11','YYYY-MM-DD'),'苗栗市中正路880號','0952-450540','1');
+Insert into MemberList (MemNo,MemName,E_mail,MemPasswd,MemPhoto,NickName,IdNo,BirDay,Address,Phone,Status) values ('MEM'||LPAD(to_char(MemberList_seq.NEXTVAL), 4, '0'),'陳品維','Westbrook@gmail.com','5566520520',null,'Westbrook','G126568763',TO_DATE('1991-02-22','YYYY-MM-DD'),'臺南市東區崇明路376號','0913-336455','1');
+
+commit;
+
+--------------------------------------------------------
+--  建立國家
+--------------------------------------------------------
+
+CREATE TABLE Country(	
+  CountryNo      VARCHAR2(7)   NOT NULL PRIMARY KEY, 
+  CountryName    VARCHAR2(30)  NOT NULL);
+  
+CREATE SEQUENCE Country_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
+
+Insert into Country(CountryNo,CountryName)values ('CRY'||LPAD(to_char(Country_seq.NEXTVAL), 4, '0'),'臺灣');
+Insert into Country(CountryNo,CountryName)values ('CRY'||LPAD(to_char(Country_seq.NEXTVAL), 4, '0'),'日本');
+Insert into Country(CountryNo,CountryName)values ('CRY'||LPAD(to_char(Country_seq.NEXTVAL), 4, '0'),'韓國');
+
+commit;
+--------------------------------------------------------
+--  建立城市
+--------------------------------------------------------
+CREATE TABLE City(	
+  CityNo      VARCHAR2(7)   NOT NULL  PRIMARY KEY, 
+  CountryNo   VARCHAR2(7)   NOT NULL  REFERENCES Country(CountryNo), 
+  CityName    VARCHAR2(30)  NOT NULL);
+  
+CREATE SEQUENCE City_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
+
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','基隆市');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','臺北市');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','新北市');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','桃園市');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','新竹縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','苗栗縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','臺中市');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','彰化縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','南投縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','雲林縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','嘉義縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','臺南市');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','高雄市');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','屏東縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','臺東縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','花蓮縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','宜蘭縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','澎湖縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','金門縣');
+Insert into City(CityNo,CountryNo,CityName)values ('CIT'||LPAD(to_char(City_seq.NEXTVAL), 4, '0'),'CRY0001','連江縣');
+
+commit;
+--------------------------------------------------------
+--  建立景點
+--------------------------------------------------------
+CREATE TABLE SpotList(	
+  SpotNo       VARCHAR2(9)    NOT NULL, 
+  SpotName     VARCHAR2(100)  NOT NULL, 
+  CityNo       VARCHAR2(7)    NOT NULL REFERENCES City(CityNo),
+  Location     VARCHAR2(300)  NOT NULL,
+  SpotType     NUMBER(1)      NOT NULL, 
+  SpotPhoto    BLOB, 
+  SpotStatus   NUMBER(1)      NOT NULL,
+  Tel          VARCHAR2(20),
+  SpotLati     NUMBER(10,6)   NOT NULL,
+  SpotLong     NUMBER(10,6)   NOT NULL, 
+  SpotDetail   VARCHAR2(4000)  , 
+   
+  CONSTRAINT  SpotList_PK PRIMARY KEY (SpotNo));
+  
+CREATE SEQUENCE SpotList_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;

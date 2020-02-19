@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>DA101G3</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <resource-ref>
+    <description>DB Connection</description>
+    <res-ref-name>jdbc/TestDB</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  <filter>
+    <filter-name>setCharacterEncoding</filter-name>
+    <filter-class>filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>setCharacterEncoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+<!--   錯誤處理 -->
+  <error-page>
+  <error-code>400</error-code>
+  <location>/index.jsp</location>
+  </error-page>
+  
+  <error-page>
+  <error-code>500</error-code>
+  <location>/index.jsp</location>  
+  </error-page>
+  
+  <error-page>
+  <error-code>404</error-code>
+  <location>/index.jsp</location> 
+  </error-page>
+  
+  
+<!--   發財俠 -->
+  <servlet>
+    <servlet-name>StoreServlet</servlet-name>
+    <servlet-class>com.item.controller.ItemServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StoreServlet</servlet-name>
+    <url-pattern>/store/item.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Cart</servlet-name>
+    <servlet-class>com.item.controller.Cart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Cart</servlet-name>
+    <url-pattern>/store/cart.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>StoreOrdServlet</servlet-name>
+    <servlet-class>com.storeOrd.controller.StoreOrdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StoreOrdServlet</servlet-name>
+    <url-pattern>/store/storeOrd.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>StoreOrdServletFE</servlet-name>
+    <servlet-class>com.storeOrd.controller.StoreOrdServlet_FE</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StoreOrdServletFE</servlet-name>
+    <url-pattern>/store/storeOrdFE.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>StoreOrdDetailServlet</servlet-name>
+    <servlet-class>com.storeOrdDetail.controller.StoreOrdDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StoreOrdDetailServlet</servlet-name>
+    <url-pattern>/store/storeOrdDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+		<servlet-name>F_ItemServlet</servlet-name>
+		<servlet-class>com.f_item.controller.F_ItemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>F_ItemServlet</servlet-name>
+		<url-pattern>/store/f_item.do</url-pattern>
+	</servlet-mapping>
+  
+  
+<!--   崩哥 -->
+  <servlet>
+    <servlet-name>PointGoodsServlet</servlet-name>
+    <servlet-class>com.pointgoods.controller.PointGoodsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PointGoodsServlet</servlet-name>
+    <url-pattern>/pointgoods/pointgoods.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PointGoodsServlet</servlet-name>
+    <url-pattern>/pointgoods.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ShowPic</servlet-name>
+    <servlet-class>com.pointgoods.controller.ShowPic</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowPic</servlet-name>
+    <url-pattern>/pointgoods/showpic.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>PointGoodsOrdServlet</servlet-name>
+    <servlet-class>com.pointgoodsord.controller.PointGoodsOrdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PointGoodsOrdServlet</servlet-name>
+    <url-pattern>/pointgoodsord/pointgoodsord.do</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>PartListServlet</servlet-name>
+    <servlet-class>com.partlist.controller.PartListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PartListServlet</servlet-name>
+    <url-pattern>/partlist/partlist.do</url-pattern>
+  </servlet-mapping>
+  
+  
+<!--   無證騎士 -->
+  <servlet>
+    <servlet-name>BackWishItemServlet</servlet-name>
+    <servlet-class>com.wishitem.controller.BackWishItemServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BackWishItemServlet</servlet-name>
+    <url-pattern>/back-end/WishItem/wishItem.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>WishItemServlet</servlet-name>
+    <servlet-class>com.wishitem.controller.WishItemServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WishItemServlet</servlet-name>
+    <url-pattern>/front-end/WishItem/wishItem.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>WishOrdServlet</servlet-name>
+    <servlet-class>com.wishord.controller.WishOrdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WishOrdServlet</servlet-name>
+    <url-pattern>/front-end/WishOrd/wishOrd.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ArticleServlet</servlet-name>
+    <servlet-class>com.article.controller.ArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleServlet</servlet-name>
+    <url-pattern>/article/article.do</url-pattern>
+  </servlet-mapping>
+  
+  
+<!--   玉米俠 -->
+  <servlet>
+    <servlet-name>MemServlet</servlet-name>
+    <servlet-class>com.mem.controller.MemServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemServlet</servlet-name>
+    <url-pattern>/back-end/mem/mem.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SpotListServlet</servlet-name>
+    <servlet-class>com.spot.controller.SpotListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SpotListServlet</servlet-name>
+    <url-pattern>/back-end/spot/spot.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FuncListServlet</servlet-name>
+    <servlet-class>com.funcList.controller.FuncListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FuncListServlet</servlet-name>
+    <url-pattern>/back-end/funclist/funclist.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdministratorServlet</servlet-name>
+    <servlet-class>com.administrator.controller.AdministratorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdministratorServlet</servlet-name>
+    <url-pattern>/back-end/admin/admin.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CountryServlet</servlet-name>
+    <servlet-class>com.country.controller.CountryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CountryServlet</servlet-name>
+    <url-pattern>/back-end/country/country.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CityServlet</servlet-name>
+    <servlet-class>com.city.controller.CityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CityServlet</servlet-name>
+    <url-pattern>/back-end/city/city.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetMemPhoto</servlet-name>
+    <servlet-class>com.mem.controller.GetMemPhoto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetMemPhoto</servlet-name>
+    <url-pattern>/back-end/mem/getmemphoto.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetSpotPhoto</servlet-name>
+    <servlet-class>com.spot.controller.GetSpotPhoto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetSpotPhoto</servlet-name>
+    <url-pattern>/back-end/spot/getspotphoto.do</url-pattern>
+  </servlet-mapping>
+  
+  	<servlet>
+		<servlet-name>GetCityPhoto</servlet-name>
+		<servlet-class>com.city.controller.GetCityPhoto</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetCityPhoto</servlet-name>
+		<url-pattern>/front-end/city/getcityphoto.do</url-pattern>
+	</servlet-mapping>
+  
+  
+<!--   新之助 -->
+  <servlet>
+		<servlet-name>AndroidMemServlet</servlet-name>
+		<servlet-class>com.Android.mem.controller.MemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AndroidMemServlet</servlet-name>
+		<url-pattern>/AndroidMemServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AndroidTripServlet</servlet-name>
+		<servlet-class>com.Android.trip.controller.TripServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AndroidTripServlet</servlet-name>
+		<url-pattern>/AndroidTripServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AndroidArticleServlet</servlet-name>
+		<servlet-class>com.Android.article.controller.ArticleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AndroidArticleServlet</servlet-name>
+		<url-pattern>/AndroidArticleServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AndroidTripDetailServlet</servlet-name>
+		<servlet-class>com.Android.tripDetail.controller.TripDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AndroidTripDetailServlet</servlet-name>
+		<url-pattern>/AndroidTripDetailServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AndroidSpotServlet</servlet-name>
+		<servlet-class>com.Android.spot.controller.SpotServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AndroidSpotServlet</servlet-name>
+		<url-pattern>/AndroidSpotServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AndroidCityServlet</servlet-name>
+		<servlet-class>com.Android.city.controller.CityServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AndroidCityServlet</servlet-name>
+		<url-pattern>/AndroidCityServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AndroidCountryServlet</servlet-name>
+		<servlet-class>com.Android.country.controller.CountryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AndroidCountryServlet</servlet-name>
+		<url-pattern>/AndroidCountryServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AndroidArticleDetailServlet</servlet-name>
+		<servlet-class>com.Android.articleDetail.controller.ArticleDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AndroidArticleDetailServlet</servlet-name>
+		<url-pattern>/AndroidArticleDetailServlet</url-pattern>
+	</servlet-mapping>
+  
+  
+</web-app>
